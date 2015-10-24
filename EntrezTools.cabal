@@ -1,0 +1,45 @@
+name:                EntrezTools
+-- The package version.  See the Haskell package versioning policy (PVP) 
+-- for standards guiding when and how versions should be incremented.
+-- http://www.haskell.org/haskellwiki/Package_versioning_policy
+-- PVP summary:      +-+------- breaking API changes
+--                   | | +----- non-breaking API additions
+--                   | | | +--- code changes with no API change
+version:             1.0.0
+synopsis:            Tools for the NCBI Entrez REST interface
+description:         EntrezTools utilizes functions from the EntrezHTTP library to provide
+                     .
+                     several commandline utilities for routine-tasks.
+		     .
+                     Usage instructions can be found in the <https://github.com/eggzilla/EntrezTools README>
+                     .
+                     Currently following Tools are included:
+                     .
+                     * FetchSequences: 
+                     Retrieves sequence in fasta format
+                     .
+                     
+license:             GPL-3
+license-file:        LICENSE
+author:              Florian Eggenhofer
+maintainer:          egg@tbi.univie.ac.at
+-- copyright:           
+category:            Bioinformatics
+build-type:          Simple
+cabal-version:       >=1.8
+
+source-repository head
+  type:     git
+  location: https://github.com/eggzilla/EntrezTools
+
+source-repository this
+  type:     git
+  location: https://github.com/eggzilla/EntrezTools/tree/1.0.0
+  tag:      1.0.0
+
+executable FetchSequence
+  Hs-Source-Dirs:      ./src/Bio/
+  main-is:	       FetchSequence.hs
+  ghc-options:         -Wall -O2
+  build-depends:       base >=4.5 && <5, cmdargs, EntrezHTTP, either-unwrap, fgl, bytestring
+
