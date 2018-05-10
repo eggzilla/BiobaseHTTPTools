@@ -41,5 +41,5 @@ executable FetchSequence
   Hs-Source-Dirs:      ./src/Bio/
   main-is:	       FetchSequence.hs
   ghc-options:         -Wall -O2
-  build-depends:       base >=4.5 && <5, cmdargs, EntrezHTTP, either-unwrap, fgl, bytestring
+  build-depends:       base >=4.5 && <5, cmdargs, EntrezHTTP>=1.0.4, either-unwrap, fgl, bytestring
 
