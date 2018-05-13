@@ -5,7 +5,7 @@ name:                EntrezTools
 -- PVP summary:      +-+------- breaking API changes
 --                   | | +----- non-breaking API additions
 --                   | | | +--- code changes with no API change
-version:             1.0.0
+version:             1.1.0
 synopsis:            Tools for the NCBI Entrez REST interface
 description:         EntrezTools utilizes functions from the EntrezHTTP library to provide
                      .
@@ -34,12 +34,11 @@ source-repository head
 
 source-repository this
   type:     git
-  location: https://github.com/eggzilla/EntrezTools/tree/1.0.0
-  tag:      1.0.0
+  location: https://github.com/eggzilla/EntrezTools/tree/1.1.0
+  tag:      1.1.0
 
 executable FetchSequence
   Hs-Source-Dirs:      ./src/Bio/
   main-is:	       FetchSequence.hs
   ghc-options:         -Wall -O2
-  build-depends:       base >=4.5 && <5, cmdargs, EntrezHTTP>=1.0.4, either-unwrap, fgl, bytestring
-
+  build-depends:       base >=4.5 && <5, cmdargs, EntrezHTTP>=1.0.4, either-unwrap, fgl, bytestring, containers, biofasta, biocore
