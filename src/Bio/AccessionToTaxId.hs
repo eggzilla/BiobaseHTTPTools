@@ -5,23 +5,18 @@ module Main where
     
 import System.Console.CmdArgs
 import Bio.EntrezHTTP
-import Bio.Sequence.Fasta
 import qualified Data.ByteString.Lazy.Char8 as B
-import Text.XML.HXT.Core
+import Data.List
+import Data.Maybe
 
 options :: Options
 data Options = Options
   { accession :: String
   } deriving (Show,Data,Typeable)
 
-
 options = Options
   { accession = def &= name "a" &= help "NCBI accession number, e.g NC_000913"
   } &= summary ("AccessionToTaxId ") &= help "Florian Eggenhofer - 2018" &= verbosity
-
--- | gets all subtrees with the specified tag name
-atTag :: ArrowXml a =>  String -> a XmlTree XmlTree
-atTag tag = deep (isElem >>> hasName tag)
 
 accessionToTaxId :: String -> IO ()
 accessionToTaxId _accession = do
@@ -31,7 +26,8 @@ accessionToTaxId _accession = do
   let entrezQuery = EntrezHTTPQuery program database queryString 
   result <- entrezHTTP entrezQuery
   let summary = head (readEntrezSummaries result)
-  print summary
+  let taxIdItem = find (\a -> itemName a == "TaxId") (summaryItems (head (documentSummaries summary)))
+  putStrLn (itemContent (fromJust taxIdItem))
 
 main = do
   Options{..} <- cmdArgs options  
