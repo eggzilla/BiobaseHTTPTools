@@ -22,7 +22,7 @@ description:         EntrezTools utilizes functions from the EntrezHTTP library 
 license:             GPL-3
 license-file:        LICENSE
 author:              Florian Eggenhofer
-maintainer:          egg@tbi.univie.ac.at
+maintainer:          egg@informatik.uni-freiburg.de
 -- copyright:           
 category:            Bioinformatics
 build-type:          Simple
@@ -41,4 +41,17 @@ executable FetchSequence
   Hs-Source-Dirs:      ./src/Bio/
   main-is:	       FetchSequence.hs
   ghc-options:         -Wall -O2
-  build-depends:       base >=4.5 && <5, cmdargs, EntrezHTTP>=1.0.4, either-unwrap, fgl, bytestring, containers, biofasta, biocore
+  build-depends:       base >=4.5 && <5, cmdargs, EntrezHTTP>=1.0.4, either-unwrap, fgl, BiobaseFasta >=0.2.0.0, bytestring, containers
+
+executable AccessionToTaxId
+  Hs-Source-Dirs:      ./src/Bio/
+  main-is:	       AccessionToTaxId.hs
+  ghc-options:         -Wall -O2
+  build-depends:       base >=4.5 && <5, cmdargs, EntrezHTTP>=1.0.4, either-unwrap, fgl, bytestring, containers, hxt
+
+executable LocusTagTo
+  Hs-Source-Dirs:      ./src/Bio/
+  main-is:	       AccessionToTaxId.hs
+  ghc-options:         -Wall -O2
+  build-depends:       base >=4.5 && <5, cmdargs, EntrezHTTP>=1.0.4, either-unwrap, fgl, bytestring, containers, hxt
+
