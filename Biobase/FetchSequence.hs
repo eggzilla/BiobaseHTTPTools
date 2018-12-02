@@ -2,9 +2,9 @@
 {-# LANGUAGE Arrows #-}
 {-# LANGUAGE RecordWildCards #-}
 module Main where
-    
+
 import System.Console.CmdArgs
-import Bio.EntrezHTTP
+import Biobase.Entrez.HTTP
 import qualified Data.ByteString.Lazy.Char8 as B
 import Biobase.Fasta.Types
 import Biobase.Fasta.Streaming
@@ -26,9 +26,9 @@ options = Options
 efetchSequence :: Int -> Int -> Int ->  IO ()
 efetchSequence _geneId _geneStart _geneStop = do
   let eutilProgram = Just "efetch"
-  let database = Just "nucleotide" 
+  let database = Just "nucleotide"
   let queryString = "id=" ++ show _geneId ++ "&seq_start=" ++ show _geneStart ++ "&seq_stop=" ++ show _geneStop ++ "&rettype=fasta"
-  let entrezQuery = EntrezHTTPQuery eutilProgram database queryString 
+  let entrezQuery = EntrezHTTPQuery eutilProgram database queryString
   result <- entrezHTTP entrezQuery
   let parsedFasta = parseFasta (B.pack result)
   print (fastaHeader (head (parsedFasta)))
@@ -36,6 +36,5 @@ efetchSequence _geneId _geneStart _geneStop = do
 
 main :: IO ()
 main = do
-  Options{..} <- cmdArgs options  
+  Options{..} <- cmdArgs options
   efetchSequence geneId geneStart geneStop
-
