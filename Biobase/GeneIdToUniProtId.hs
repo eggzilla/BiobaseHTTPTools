@@ -1,34 +1,27 @@
-{-# LANGUAGE DeriveDataTypeable #-}
-{-# LANGUAGE Arrows #-}
-{-# LANGUAGE RecordWildCards #-}
+{-# LANGUAGE OverloadedStrings #-}
+
 module Main where
 
 import System.Console.CmdArgs
-import Biobase.Entrez.HTTP
-import qualified Data.ByteString.Lazy.Char8 as B
+import Biobase.Ensembl.HTTP
 import Data.List
-import Data.Maybe
+import qualified Data.Text as T
 
 options :: Options
 data Options = Options
-  { accession :: String
+  { geneIds :: T.Text
   } deriving (Show,Data,Typeable)
 
 options = Options
-  {  = def &= name "a" &= help "NCBI accession number, e.g b0001"
-  } &= summary ("LocusTagToUniProt") &= help "Florian Eggenhofer - 2018" &= verbosity
+  { geneIds = def &= name "g" &= help "Ensembl gene ids (or NCBI locus tags) comma separated, e.g b0001,b0825"
+  } &= summary ("GeneIdToUniProtId") &= help "Florian Eggenhofer - 2018" &= verbosity
 
-accessionToTaxId :: String -> IO ()
-accessionToTaxId _accession = do
-  let program = Just "esummary"
-  let database = Just "nucleotide"
-  let queryString = "id=" ++ _accession
-  let entrezQuery = EntrezHTTPQuery program database queryString
-  result <- entrezHTTP entrezQuery
-  let summary = head (readEntrezSummaries result)
-  let taxIdItem = find (\a -> itemName a == "TaxId") (summaryItems (head (documentSummaries summary)))
-  putStrLn (itemContent (fromJust taxIdItem))
+geneIdToUniProtId :: T.Text -> IO ()
+geneIdToUniProtId _geneIds = do
+  let geneIdList = T.splitOn "," _geneIds
+  uniprotIds <- requestUniProtWithGeneIds geneIdList
+  mapM putStrLn uniprotIds
 
 main = do
   Options{..} <- cmdArgs options
-  accessionToTaxId accession
+  geneIdToUniProtId geneIds
