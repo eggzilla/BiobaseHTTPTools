@@ -46,8 +46,14 @@ executable AccessionToTaxId
   ghc-options:         -Wall -O2
   build-depends:       base >=4.5 && <5, cmdargs, BiobaseHTTP>=1.1.0, either-unwrap, fgl, bytestring, containers, hxt
 
-executable LocusTagToUniProt
+executable GeneIdToUniProtId
   Hs-Source-Dirs:      ./Biobase/
-  main-is:	           LocusTagToUniProt.hs
+  main-is:	           GeneIdToUniProtId.hs
   ghc-options:         -Wall -O2
-  build-depends:       base >=4.5 && <5, cmdargs, BiobaseHTTP>=1.1.0, either-unwrap, fgl, bytestring, containers, hxt
+  build-depends:       base >=4.5 && <5, cmdargs, BiobaseHTTP>=1.1.0, text
+
+executable GeneIdToGOTerms
+  Hs-Source-Dirs:      ./Biobase/
+  main-is:	           GeneIdToGOTerms.hs
+  ghc-options:         -Wall -O2
+  build-depends:       base >=4.5 && <5, cmdargs, BiobaseHTTP>=1.1.0, text

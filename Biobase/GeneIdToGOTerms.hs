@@ -1,5 +1,6 @@
 {-# LANGUAGE OverloadedStrings #-}
-
+{-# LANGUAGE DeriveDataTypeable #-}
+{-# LANGUAGE RecordWildCards #-}
 module Main where
 
 import System.Console.CmdArgs
@@ -9,7 +10,7 @@ import qualified Data.Text as T
 
 options :: Options
 data Options = Options
-  { geneIds :: T.Text
+  { geneIds :: String
   } deriving (Show,Data,Typeable)
 
 options = Options
@@ -17,12 +18,13 @@ options = Options
   } &= summary ("GeneIdToGOTerms") &= help "Florian Eggenhofer - 2018" &= verbosity
 
 geneIdToGOTerms :: T.Text -> IO ()
-geneIdToGOTerms _geneIds = do
-  let geneIdList = T.splitOn "," _geneIds
+geneIdToGOTerms geneIdsText = do
+  let geneIdList = T.splitOn "," geneIdsText
   idsGoTermsPair <- requestGOTermsWithGeneIds geneIdList
-  let output = map (\(a,b) -> a `T.append` (T.intercalate (T.pack ",") b) idsGoTermsPair
-  mapM putStrLn output
+  let output = map (\(a,b) -> a `T.append` (T.pack "\t") `T.append` (T.intercalate (T.pack ",") b)) idsGoTermsPair
+  mapM_ (putStrLn . T.unpack) output
 
+main :: IO ()
 main = do
   Options{..} <- cmdArgs options
-  geneIdToGOTerms geneIds
+  geneIdToGOTerms (T.pack geneIds)

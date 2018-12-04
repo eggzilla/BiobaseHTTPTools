@@ -1,15 +1,16 @@
 {-# LANGUAGE OverloadedStrings #-}
-
+{-# LANGUAGE DeriveDataTypeable #-}
+{-# LANGUAGE RecordWildCards #-}
 module Main where
 
 import System.Console.CmdArgs
 import Biobase.Ensembl.HTTP
-import Data.List
+--import Data.List
 import qualified Data.Text as T
 
 options :: Options
 data Options = Options
-  { geneIds :: T.Text
+  { geneIds :: String
   } deriving (Show,Data,Typeable)
 
 options = Options
@@ -17,11 +18,13 @@ options = Options
   } &= summary ("GeneIdToUniProtId") &= help "Florian Eggenhofer - 2018" &= verbosity
 
 geneIdToUniProtId :: T.Text -> IO ()
-geneIdToUniProtId _geneIds = do
-  let geneIdList = T.splitOn "," _geneIds
+geneIdToUniProtId geneIdsText = do
+  let geneIdList = T.splitOn "," geneIdsText
   uniprotIds <- requestUniProtWithGeneIds geneIdList
-  mapM putStrLn uniprotIds
+  let output = map (\(a,b) -> a `T.append` (T.pack "\t") `T.append` b) uniprotIds
+  mapM_ (putStrLn . T.unpack) output
 
+main :: IO ()
 main = do
   Options{..} <- cmdArgs options
-  geneIdToUniProtId geneIds
+  geneIdToUniProtId (T.pack geneIds)

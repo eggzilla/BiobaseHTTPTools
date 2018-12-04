@@ -29,6 +29,7 @@ accessionToTaxId _accession = do
   let taxIdItem = find (\a -> itemName a == "TaxId") (summaryItems (head (documentSummaries summary)))
   putStrLn (itemContent (fromJust taxIdItem))
 
+main :: IO ()
 main = do
   Options{..} <- cmdArgs options
   accessionToTaxId accession
