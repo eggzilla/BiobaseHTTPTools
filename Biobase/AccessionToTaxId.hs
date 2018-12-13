@@ -2,9 +2,9 @@
 {-# LANGUAGE Arrows #-}
 {-# LANGUAGE RecordWildCards #-}
 module Main where
-    
+
 import System.Console.CmdArgs
-import Bio.EntrezHTTP
+import Biobase.Entrez.HTTP
 import qualified Data.ByteString.Lazy.Char8 as B
 import Data.List
 import Data.Maybe
@@ -21,15 +21,15 @@ options = Options
 accessionToTaxId :: String -> IO ()
 accessionToTaxId _accession = do
   let program = Just "esummary"
-  let database = Just "nucleotide" 
+  let database = Just "nucleotide"
   let queryString = "id=" ++ _accession
-  let entrezQuery = EntrezHTTPQuery program database queryString 
+  let entrezQuery = EntrezHTTPQuery program database queryString
   result <- entrezHTTP entrezQuery
   let summary = head (readEntrezSummaries result)
   let taxIdItem = find (\a -> itemName a == "TaxId") (summaryItems (head (documentSummaries summary)))
   putStrLn (itemContent (fromJust taxIdItem))
 
+main :: IO ()
 main = do
-  Options{..} <- cmdArgs options  
+  Options{..} <- cmdArgs options
   accessionToTaxId accession
-
