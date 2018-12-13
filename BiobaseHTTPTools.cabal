@@ -13,7 +13,11 @@ description:         BiobaseHTTP provides tools to interface the Bioinformatics 
                      * AccessionToTaxId:
                      Converts NCBI accession number to taxonomy id
                      .
-
+                     * GeneIdToGOTerms:
+                     Retrieve GOterms for a Ensembl GeneId
+                     .
+                     * GeneIdToUniProtId
+                     Retrieves UniProtId for a Ensembl GeneId
 
 license:             GPL-3
 license-file:        LICENSE
