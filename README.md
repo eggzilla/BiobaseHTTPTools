@@ -12,14 +12,14 @@ BiobaseHTTPTools can be install via the Haskell package management system:
 
 Currently following Tools are included and linked with their usage instructions:
 
-###[FetchSequence](fetchsequence.md)
+### [FetchSequence](fetchsequence.md)
 Retrieves sequences in fasta format
 
-###[AccessionToTaxId](AccessionToTaxId.md)
+### [AccessionToTaxId](AccessionToTaxId.md)
 Converts NCBI accession number to taxonomy id
 
-###[GeneIdToGOTerms](GeneIdToGOTerms.md)
+### [GeneIdToGOTerms](GeneIdToGOTerms.md)
 Retrieve GOterms for a Ensembl GeneId
 
-###[GeneIdToUniProtId](GeneIdToUniProtId.md)
+### [GeneIdToUniProtId](GeneIdToUniProtId.md)
 Retrieves UniProtId for a Ensembl GeneId
