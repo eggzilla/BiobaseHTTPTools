@@ -1,4 +1,4 @@
-![BiobaseHTTPTools](http://www.tbi.univie.ac.at/~egg/EntrezTools.png "BiobaseHTTPTools")
+# BiobaseHTTPTools
 
 [![Hackage](https://img.shields.io/hackage/v/BiobaseHTTPTools.svg)](https://hackage.haskell.org/package/BiobaseHTTPTools) [![Build Status](https://travis-ci.org/eggzilla/BiobaseHTTPTools.svg)](https://travis-ci.org/eggzilla/BiobaseHTTPTools)
 =============
