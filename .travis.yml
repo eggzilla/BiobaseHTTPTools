@@ -11,6 +11,6 @@ script:
 deploy:
   provider: releases
   skip_cleanup: true
-  github_token: $GITHUB_TOKEN
+  api_key: $GITHUB_TOKEN
   file: "BiobaseHTTPTools.tar.gz"
   draft: true  
