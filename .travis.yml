@@ -5,7 +5,7 @@ language: c
 services:
   - docker
 
-before_script:
+script:
   - docker build --tag devel -f Dockerfile.dev .
 
 deploy:
@@ -13,5 +13,4 @@ deploy:
   skip_cleanup: true
   github_token: $GITHUB_TOKEN
   file: "BiobaseHTTPTools.tar.gz"
-  skip_cleanup: true
   draft: true  
