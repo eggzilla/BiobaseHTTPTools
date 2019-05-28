@@ -24,8 +24,8 @@ accessionToTaxId _accession = do
   let queryString = "id=" ++ _accession
   let entrezQuery = EntrezHTTPQuery _program _database queryString
   result <- entrezHTTP entrezQuery
-  let summary = head (readEntrezSummaries result)
-  let taxIdItem = find (\a -> itemName a == "TaxId") (summaryItems (head (documentSummaries summary)))
+  let _summary = head (readEntrezSummaries result)
+  let taxIdItem = find (\a -> itemName a == "TaxId") (summaryItems (head (documentSummaries _summary)))
   putStrLn (itemContent (fromJust taxIdItem))
 
 main :: IO ()
