@@ -1,0 +1,3 @@
+-*-change-log-*-
+1.0.1 Florian Eggenhofer <egg@informatik.uni-freiburg.de> 29. May 2019
+	* Added building of statically linked binaries via travis-ci
