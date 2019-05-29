@@ -9,8 +9,7 @@ script:
   - docker build --tag devel -f Dockerfile.dev .
 
 before_deploy:
-  - export DOCKERID=`docker ps -alq`
-  - docker cp $DOCKERID:/source/BiobaseHTTPTools.tar.gz .
+  - deploy.sh
 
 deploy:
   provider: releases
