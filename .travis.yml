@@ -6,7 +6,7 @@ services:
   - docker
 
 script:
-  - docker build --name devel -f Dockerfile.dev .
+  - docker build --tag devel -f Dockerfile.dev .
 
 before_deploy:
   - docker cp devel:/source/BiobaseHTTPTools.tar.gz .
