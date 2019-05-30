@@ -13,4 +13,4 @@ RUN mkdir BiobaseHTTPTools
 RUN cabal new-update
 RUN cabal new-build --ghc-options="-optl-static -optl-pthread -fPIC" --bindir=BiobaseHTTPTools
 RUN tar -cvzf BiobaseHTTPTools.tar.gz BiobaseHTTPTools
-RUN github-release-linux upload --token $GITHUB_TOKEN --owner 'eggzilla' --repo 'BiobaseHTTPTools' --tag 'test' --file 'BiobaseHTTPTools.tar.gz' --name 'Executables'
+RUN ./github-release-linux upload --token $GITHUB_TOKEN --owner 'eggzilla' --repo 'BiobaseHTTPTools' --tag 'test' --file 'BiobaseHTTPTools.tar.gz' --name 'Executables'
