@@ -9,7 +9,7 @@ script:
   - docker build --tag devel -f Dockerfile.dev .
 
 before_deploy:
-  - deploy.sh
+  - ./deploy.sh
 
 deploy:
   provider: releases
