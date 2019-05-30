@@ -5,15 +5,6 @@ language: c
 services:
   - docker
 
-before_script:
+script:
   - docker build --tag devel -f Dockerfile.dev .
 
-script:
-  - ./deploy.sh
-
-deploy:
-  provider: releases
-  skip_cleanup: true
-  api_key: $GITHUB_TOKEN
-  file: "BiobaseHTTPTools.tar.gz"
-  draft: true  
