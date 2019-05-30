@@ -5,8 +5,10 @@ language: c
 services:
   - docker
 
-script:
+before_install:
   - docker build --tag devel -f Dockerfile.dev .
+
+script:
   - ./deploy.sh
 
 deploy:
