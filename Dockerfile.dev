@@ -6,11 +6,7 @@ RUN apk add --no-cache musl musl-dev musl-utils musl-dbg ghc ghc-dev ghc-doc cab
 ADD . source
 WORKDIR source
 
-RUN wget https://github.com/tfausak/github-release/releases/download/1.2.4/github-release-linux.gz
-RUN gunzip github-release-linux.gz
-RUN chmod 755 github-release-linux
 RUN mkdir BiobaseHTTPTools
 RUN cabal new-update
 RUN cabal new-build --ghc-options="-optl-static -optl-pthread -fPIC" --bindir=BiobaseHTTPTools
 RUN tar -cvzf BiobaseHTTPTools.tar.gz BiobaseHTTPTools
-RUN ./github-release-linux upload --token $GITHUB_TOKEN --owner 'eggzilla' --repo 'BiobaseHTTPTools' --tag 'test' --file 'BiobaseHTTPTools.tar.gz' --name 'Executables'
