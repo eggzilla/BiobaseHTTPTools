@@ -8,7 +8,9 @@ WORKDIR source
 
 RUN mkdir BiobaseHTTPTools
 RUN cabal new-update
-RUN cabal new-build --ghc-options="-optl-static -optl-pthread -fPIC" --bindir=BiobaseHTTPTools
+RUN cabal new-build --ghc-options="-optl-static -optl-pthread -fPIC"
+COPY dist-newstyle/build/x86_64-linux/ghc-8.4.4/BiobaseHTTPTools-1.0.1/x/AccessionToTaxId/build/AccessionToTaxId/AccessionToTaxId BiobaseHTTPTools
+COPY dist-newstyle/build/x86_64-linux/ghc-8.4.4/BiobaseHTTPTools-1.0.1/x/FetchSequence/build/FetchSequence/FetchSequence BiobaseHTTPTools 
+COPY dist-newstyle/build/x86_64-linux/ghc-8.4.4/BiobaseHTTPTools-1.0.1/x/GeneIdToGOTerms/build/GeneIdToGOTerms/GeneIdToGOTerms BiobaseHTTPTools
+COPY dist-newstyle/build/x86_64-linux/ghc-8.4.4/BiobaseHTTPTools-1.0.1/x/GeneIdToUniProtId/build/GeneIdToUniProtId/GeneIdToUniProtId BiobaseHTTPTools
 RUN tar -cvzf BiobaseHTTPTools.tar.gz BiobaseHTTPTools
-RUN ls
-RUN pwd
