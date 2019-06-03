@@ -10,7 +10,7 @@ before_script:
 
 script:
   - mkdir binaries
-  - docker run -v binaries:/source/binaries -other -options devel "cp /source/BiobaseHTTPTools.tar.gz /source/binaries"
+  - docker run -v binaries:/source/binaries devel 'cp /source/BiobaseHTTPTools.tar.gz /source/binaries'
 
 
 deploy:
