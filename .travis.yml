@@ -9,10 +9,8 @@ before_script:
   - docker build --tag devel -f Dockerfile.dev .
 
 script:
-  - mkdir $TRAVIS_BUILD_DIR/binaries
-  - echo $TRAVIS_BUILD_DIR
-  - ls
-  - docker run -v $TRAVIS_BUILD_DIR/binaries:/source/binaries devel 'cp /source/BiobaseHTTPTools.tar.gz /source/binaries'
+  - docker create --name develcontainer devel
+  - docker cp develcontainer:/source/BiobaseHTTPTools.tar.gz .  
 
 
 deploy:
