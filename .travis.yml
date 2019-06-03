@@ -17,5 +17,5 @@ deploy:
   provider: releases
   skip_cleanup: true
   api_key: $GITHUB_TOKEN
-  file: "$TRAVIS_BUILD_DIR/binaries/BiobaseHTTPTools.tar.gz"
+  file: "BiobaseHTTPTools.tar.gz"
   draft: true  
