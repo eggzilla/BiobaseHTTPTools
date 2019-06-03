@@ -10,6 +10,8 @@ before_script:
 
 script:
   - mkdir $TRAVIS_BUILD_DIR/binaries
+  - echo $TRAVIS_BUILD_DIR
+  - ls
   - docker run -v $TRAVIS_BUILD_DIR/binaries:/source/binaries devel 'cp /source/BiobaseHTTPTools.tar.gz /source/binaries'
 
 

@@ -10,3 +10,5 @@ RUN mkdir BiobaseHTTPTools
 RUN cabal new-update
 RUN cabal new-build --ghc-options="-optl-static -optl-pthread -fPIC" --bindir=BiobaseHTTPTools
 RUN tar -cvzf BiobaseHTTPTools.tar.gz BiobaseHTTPTools
+RUN ls
+RUN pwd
