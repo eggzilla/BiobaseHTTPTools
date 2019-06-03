@@ -9,13 +9,13 @@ before_script:
   - docker build --tag devel -f Dockerfile.dev .
 
 script:
-  - mkdir binaries
-  - docker run -v binaries:/source/binaries devel 'cp /source/BiobaseHTTPTools.tar.gz /source/binaries'
+  - mkdir $TRAVIS_BUILD_DIR/binaries
+  - docker run -v $TRAVIS_BUILD_DIR/binaries:/source/binaries devel 'cp /source/BiobaseHTTPTools.tar.gz /source/binaries'
 
 
 deploy:
   provider: releases
   skip_cleanup: true
   api_key: $GITHUB_TOKEN
-  file: "/binaries/BiobaseHTTPTools.tar.gz"
+  file: "$TRAVIS_BUILD_DIR/binaries/BiobaseHTTPTools.tar.gz"
   draft: true  
