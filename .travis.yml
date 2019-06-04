@@ -15,6 +15,7 @@ script:
   - docker cp develcontainer:/source/dist-newstyle/build/x86_64-linux/ghc-8.4.3/BiobaseHTTPTools-1.0.1/x/FetchSequence/build/FetchSequence/FetchSequence BiobaseHTTPTools
   - docker cp develcontainer:/source/dist-newstyle/build/x86_64-linux/ghc-8.4.3/BiobaseHTTPTools-1.0.1/x/GeneIdToGOTerms/build/GeneIdToGOTerms/GeneIdToGOTerms BiobaseHTTPTools
   - docker cp develcontainer:/source/dist-newstyle/build/x86_64-linux/ghc-8.4.3/BiobaseHTTPTools-1.0.1/x/GeneIdToUniProtId/build/GeneIdToUniProtId/GeneIdToUniProtId BiobaseHTTPTools
+  - cp LICENSE BiobaseHTTPTools
   - tar -cvzf BiobaseHTTPTools.tar.gz BiobaseHTTPTools
 
 
