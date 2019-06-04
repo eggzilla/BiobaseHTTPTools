@@ -10,7 +10,12 @@ before_script:
 
 script:
   - docker create --name develcontainer devel
-  - docker cp develcontainer:/source/BiobaseHTTPTools.tar.gz .  
+  - mkdir BiobaseHTTPTools.tar.gz
+  - docker cp develcontainer:/source/dist-newstyle/build/x86_64-linux/ghc-8.4.4/BiobaseHTTPTools-1.0.1/x/AccessionToTaxId/build/AccessionToTaxId/AccessionToTaxId BiobaseHTTPTools
+  - docker cp develcontainer:/source/dist-newstyle/build/x86_64-linux/ghc-8.4.4/BiobaseHTTPTools-1.0.1/x/FetchSequence/build/FetchSequence/FetchSequence BiobaseHTTPTools
+  - docker cp develcontainer:/source/dist-newstyle/build/x86_64-linux/ghc-8.4.4/BiobaseHTTPTools-1.0.1/x/GeneIdToGOTerms/build/GeneIdToGOTerms/GeneIdToGOTerms BiobaseHTTPTools
+  - docker cp develcontainer:/source/dist-newstyle/build/x86_64-linux/ghc-8.4.4/BiobaseHTTPTools-1.0.1/x/GeneIdToUniProtId/build/GeneIdToUniProtId/GeneIdToUniProtId BiobaseHTTPTools
+  - tar -cvzf BiobaseHTTPTools.tar.gz BiobaseHTTPTools
 
 
 deploy:
